@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{booktabs} % 导入三线表需要的宏包
+\setlength{\baselineskip}{22pt}
+
+\title{HW1 Numerical Analysis 22Fall}
+\author{Jinchen Wang}
+\date{20220922}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\centerline{The solution for 1.8.1 theoretical problems.}
+\end{abstract}
+
+\section*{I.}
+\textbf{• What is the width of the interval at the nth step?}\\
+\textbf{Solution:} The width of the interval at the nth step is $\frac{1}{2^{n}}$.\\
+\\
+\textbf{• What is the maximum possible distance between the root r and the midpoint of the interval?}\\
+\textbf{Solution:} The maximum possible distance is 1.
+
+
+\section*{II.}
+\textbf{Solution:}Let $x_0$ be the root of $f(x)$, at the nth step,\\
+$$\frac{b_0-a_0}{2^n}/x_0<\frac{b_0-a_0}{2^n}/a_0<\epsilon$$
+Then we have,\\
+\begin{equation}
+    \begin{aligned}
+        \frac{b_0-a_0}{a_0\epsilon}&<2^n\\
+        log(b_0-a_0)-log(\epsilon)-log(a_0)&<n\\
+        log(b_0-a_0)-log(\epsilon)-log(a_0)-1&\leq n
+    \end{aligned}
+    \nonumber
+\end{equation}
+
+\section*{III.}
+We have $f'(x) = 12x^2 - 4x$.
+Then we can easily establish a frame,\\
+
+\begin{tabular}{cccc}% 其中，tabular是表格内容的环境；c表示centering，即文本格式居中；c的个数代表列的个数
+\toprule %[2pt]设置线宽     
+ . & x  &  f(x) & f'(x) \\ %换行
+\midrule %[2pt]  
+0 & -1 & -3 & -16 \\
+1 & −0.8125 & −0.4658 & 11.1719\\
+2 & −0.7708 & −0.0201 & 10.2128 \\
+3 & −0.7688 & 0.0003 & 10.1678\\
+4 & −0.76883 & −1.95E − 5 & 10.1685\\
+Result & −0.768828 &. &.\\
+
+\bottomrule %[2pt]     
+\end{tabular}
+
+\section*{IV.}
+$$e_n = f(x_n) - 0 = f(x_n)$$
+According to Taylor expansion of order 1, we have,
+$$f(x) = f(x_n)+(x-x_n)f'(x)+O(x-x_n)$$
+Thus,
+\begin{equation}
+    \begin{aligned}
+       e_{n+1} = f(x_n+1) = f(x_{n})+(x_{n+1}-x_n)f'(x_n)+O(x-x_n)\\
+       e_{n+1} = f(x_n) -\frac{f(x_n)}{f(x_0)}f'(x_n) + O(x-x_n)\\
+       e_{n+1} = f(x_n) -\frac{f'(x_n)}{f(x_0)}f(x_n) + O(x-x_n)\\
+       e_{n+1} = (1 -\frac{f'(x_n)}{f(x_0)})e_n\\
+    \end{aligned}
+    \nonumber
+\end{equation}
+$$e_{n+1} = Ce_{n}^s$$
+where $C = (1 -\frac{f'(x_n)}{f(x_0)}), s = 1$
+
+\section*{V.}
+Within $(-\frac{\pi}{2},\frac{\pi}{2})$, the iteration $x_{n+1} = tan^{-1}(x_n)$ will converge.\\
+Since $tan^{-1}(x) < x,x_{n+1} < x_{n}$.Since $x_n$ is a monotonically decreasing sequence and it's bounded, it converges.Since $tan^{-1}(0) = 0$, it comes to a stable point.\\
+Thus it converges to 0.
+
+\section*{VI.}
+We can easily derive the iteration formula: $x_{n+1} = \frac{1}{p+x_{n}} $ and $ x_1 = \frac{1}{p}$.\\
+Thus, we can solve the equation: \\
+$$x = \frac{1}{x}$$
+$$ x_{1,2} = \frac{-p \pm \sqrt{p^2+4}}{2}$$
+Since $x_n > x_{n+1}$ and $x_1 > 0$, we only reserve the positive root of the equation above.\\
+Since ${x_n}$ is a monotonically decreasing sequence and it's bounded, by Monotonic Theorem, it converges to $\frac{-p + \sqrt{p^2+4}}{2}$
+
+\section*{VII.}
+Since $a<0$, $log(a)$ doesn't hold.But We still have $\frac{b_0 - a_0}{2^n}/x_0 < \epsilon$.\\
+Thus,
+$$n \geq log(b_0 - a_0) - log(\epsilon) - 1$$
+\end{document}
